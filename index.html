@@ -3,60 +3,203 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Agenda de l'association</title>
+    <meta name="theme-color" content="#FBF9F5">
+    <title>مؤسسة سيدة الأرض — Agenda</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+
     <style>
+        :root {
+            --noir: #000000;
+            --rouge: #CE1126;
+            --vert: #007A3D;
+            --blanc: #FFFFFF;
+            --ivoire: #FBF9F5;
+            --ink: #1A1A1A;
+            --hairline: rgba(20, 20, 20, 0.10);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
 
+        html,
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            background-color: #ffffff;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
+            width: 100%;
+            overflow-x: hidden;
         }
 
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--ivoire);
+            color: var(--ink);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px 18px;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* ===== Carte principale ===== */
         .container {
             width: 100%;
-            max-width: 400px;
+            max-width: 420px;
+            background-color: var(--blanc);
+            border: 1px solid var(--hairline);
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.045);
+            padding: 36px 26px 30px;
             text-align: center;
         }
 
-        h1 {
-            font-size: 24px;
-            color: #333333;
-            margin-bottom: 40px;
-            font-weight: 600;
+        /* ===== 1. Logo ===== */
+        /* Remplacez simplement le fichier logo.png (même dossier) :
+           le cadre garde le logo centré et non déformé. */
+        .logo-box {
+            width: 128px;
+            height: 128px;
+            margin: 0 auto 22px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+            background-color: var(--ivoire);
+            border: 1px solid var(--hairline);
+            border-radius: 18px;
         }
 
+        .logo-box img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        /* Emplacement temporaire, affiché uniquement si logo.png est absent */
+        .logo-fallback {
+            font-family: "Amiri", "Noto Naskh Arabic", "Traditional Arabic", serif;
+            font-size: 52px;
+            line-height: 1;
+            color: var(--vert);
+        }
+
+        /* ===== 2. Drapeaux ===== */
+        .flags {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+
+        .flag {
+            display: block;
+            height: 22px;
+            width: auto;
+            border: 1px solid var(--hairline);
+            border-radius: 3px;
+        }
+
+        /* ===== 3. Nom de l'association ===== */
+        h1 {
+            font-family: "Amiri", "Noto Naskh Arabic", "Traditional Arabic", serif;
+            font-size: clamp(28px, 8.5vw, 38px);
+            font-weight: 700;
+            line-height: 1.6;
+            color: var(--ink);
+            margin-bottom: 16px;
+        }
+
+        /* ===== Ligne décorative ===== */
+        .deco {
+            width: 84px;
+            height: 4px;
+            margin: 0 auto 28px;
+            border-radius: 999px;
+            box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.06);
+            background: linear-gradient(to right,
+                    var(--noir) 0 25%,
+                    #EDE7DC 25% 50%,
+                    var(--vert) 50% 75%,
+                    var(--rouge) 75% 100%);
+        }
+
+        /* ===== Boutons ===== */
         .boutons {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 14px;
         }
 
         .btn {
-            display: inline-block;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 11px;
             width: 100%;
-            padding: 16px 24px;
-            font-size: 18px;
-            font-weight: 500;
+            min-height: 58px;
+            padding: 15px 20px;
+            font-size: 17px;
+            font-weight: 600;
+            font-family: inherit;
             text-decoration: none;
-            border: 2px solid #333333;
-            color: #333333;
-            background-color: #ffffff;
-            border-radius: 8px;
-            transition: none;
+            border-radius: 12px;
+            transition: background-color 0.12s ease, box-shadow 0.12s ease;
         }
 
-        .btn:active {
-            background-color: #f0f0f0;
+        .btn svg {
+            width: 22px;
+            height: 22px;
+            flex: none;
+        }
+
+        /* Bouton 1 : agenda (vert) */
+        .btn-primary {
+            background-color: var(--vert);
+            color: var(--blanc);
+            border: 1px solid var(--vert);
+            box-shadow: 0 6px 16px rgba(0, 122, 61, 0.18);
+        }
+
+        .btn-primary:active {
+            background-color: #00652F;
+            box-shadow: none;
+        }
+
+        /* Bouton 2 : Facebook (contour sobre) */
+        .btn-secondary {
+            background-color: var(--blanc);
+            color: var(--ink);
+            border: 1px solid rgba(20, 20, 20, 0.16);
+        }
+
+        .btn-secondary:active {
+            background-color: var(--ivoire);
+        }
+
+        /* ===== Petits écrans ===== */
+        @media (max-width: 380px) {
+            .container {
+                padding: 28px 18px 24px;
+                border-radius: 16px;
+            }
+
+            .logo-box {
+                width: 108px;
+                height: 108px;
+            }
+
+            .btn {
+                min-height: 54px;
+                font-size: 16px;
+            }
         }
     </style>
 </head>
@@ -64,9 +207,44 @@
     <div class="container">
 
         <!-- ========================================== -->
-        <!-- MODIFIEZ ICI : Nom de l'association        -->
+        <!-- LOGO : déposez le fichier logo.png dans    -->
+        <!-- le même dossier que cette page.            -->
         <!-- ========================================== -->
-        <h1>مؤسسة سيدة الأرض</h1>
+        <div class="logo-box">
+            <img src="logo.png" alt="مؤسسة سيدة الأرض"
+                 onerror="this.hidden=true; document.getElementById('logoFallback').hidden=false;">
+            <div class="logo-fallback" id="logoFallback" hidden>س</div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- DRAPEAUX : Palestine / Tunisie             -->
+        <!-- ========================================== -->
+        <div class="flags">
+            <!-- Drapeau palestinien -->
+            <svg class="flag" viewBox="0 0 60 30" role="img" aria-label="Drapeau palestinien">
+                <rect width="60" height="10" fill="#000000"/>
+                <rect y="10" width="60" height="10" fill="#FFFFFF"/>
+                <rect y="20" width="60" height="10" fill="#007A3D"/>
+                <path d="M0,0 L20,15 L0,30 Z" fill="#CE1126"/>
+            </svg>
+
+            <!-- Drapeau tunisien -->
+            <svg class="flag" viewBox="0 0 60 40" role="img" aria-label="Drapeau tunisien">
+                <rect width="60" height="40" fill="#CE1126"/>
+                <circle cx="30" cy="20" r="12" fill="#FFFFFF"/>
+                <circle cx="30" cy="20" r="9" fill="#CE1126"/>
+                <circle cx="32.5" cy="20" r="8" fill="#FFFFFF"/>
+                <polygon fill="#CE1126"
+                         points="33,15.5 34.01,18.61 37.28,18.61 34.64,20.53 35.65,23.64 33,21.72 30.35,23.64 31.36,20.53 28.72,18.61 31.99,18.61"/>
+            </svg>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- NOM DE L'ASSOCIATION                       -->
+        <!-- ========================================== -->
+        <h1 lang="ar" dir="rtl">مؤسسة سيدة الأرض</h1>
+
+        <div class="deco" aria-hidden="true"></div>
 
         <div class="boutons">
 
@@ -74,15 +252,22 @@
             <!-- MODIFIEZ ICI : Nom du fichier PDF          -->
             <!-- Par défaut : agenda.pdf (même dossier)     -->
             <!-- ========================================== -->
-            <a href="agenda.pdf" class="btn" target="_blank">
-                📖 Consulter l'agenda numérique
+            <a href="agenda.pdf" class="btn btn-primary" target="_blank">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M12 6.5C10.5 5.3 8.6 4.7 6.3 4.7c-.9 0-1.7.1-2.3.2v13c.6-.1 1.4-.2 2.3-.2 2.3 0 4.2.6 5.7 1.8 1.5-1.2 3.4-1.8 5.7-1.8.9 0 1.7.1 2.3.2v-13c-.6-.1-1.4-.2-2.3-.2-2.3 0-4.2.6-5.7 1.8z"/>
+                    <path d="M12 6.5v13"/>
+                </svg>
+                Consulter l'agenda numérique
             </a>
 
             <!-- ========================================== -->
             <!-- MODIFIEZ ICI : Lien de la page Facebook    -->
             <!-- ========================================== -->
-            <a href="https://www.facebook.com/share/1MMvS6DXNy/?mibextid=wwXIfr" class="btn" target="_blank" rel="noopener noreferrer">
-                📘 Page Facebook
+            <a href="https://www.facebook.com/share/1MMvS6DXNy/?mibextid=wwXIfr" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">
+                <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M15.12 5.32H17V2.14A26.11 26.11 0 0 0 14.26 2C11.54 2 9.68 3.66 9.68 6.7v2.62H6.61v3.56h3.07V22h3.68v-9.12h3.06l.46-3.56h-3.52V7.05c0-1.05.28-1.73 1.76-1.73z"/>
+                </svg>
+                Page Facebook
             </a>
 
         </div>
